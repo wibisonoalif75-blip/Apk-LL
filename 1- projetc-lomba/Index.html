@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TurnamenKu — Sistem Lomba Interaktif</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">TURNAMEN<span class="accent">KU</span></span>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-tab="daftar">Daftar Tim</button>
+      <button class="nav-btn" data-tab="bagan">Bagan</button>
+      <button class="nav-btn" data-tab="skor">Scoreboard</button>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ======================== TAB: DAFTAR TIM ======================== -->
+    <section id="tab-daftar" class="tab active">
+      <div class="section-title">
+        <span class="tag">01</span>
+        <h2>Registrasi Tim</h2>
+      </div>
+
+      <div class="card form-card">
+        <div class="field">
+          <label>Nama Tim</label>
+          <input id="input-nama-tim" type="text" placeholder="Contoh: Garuda FC" />
+        </div>
+        <div class="field">
+          <label>Pemain <span class="hint">(pisahkan dengan koma)</span></label>
+          <input id="input-pemain" type="text" placeholder="Contoh: Andi, Budi, Citra" />
+        </div>
+        <button class="btn-primary" id="btn-simpan">
+          <span>Daftarkan Tim</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div id="form-feedback" class="feedback"></div>
+      </div>
+
+      <div class="section-title mt-lg">
+        <span class="tag">02</span>
+        <h2>Tim Terdaftar</h2>
+        <span id="team-count" class="pill">0 Tim</span>
+      </div>
+
+      <div id="team-list" class="team-grid">
+        <div class="empty-state">
+          <div class="empty-icon">🏟️</div>
+          <p>Belum ada tim terdaftar.<br/>Isi form di atas untuk memulai!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== TAB: BAGAN ======================== -->
+    <section id="tab-bagan" class="tab">
+      <div class="section-title">
+        <span class="tag">03</span>
+        <h2>Bagan Turnamen</h2>
+      </div>
+
+      <div class="bagan-controls">
+        <button class="btn-secondary" id="btn-acak">
+          🔀 Acak Ulang Match
+        </button>
+        <button class="btn-danger" id="btn-reset-bagan">
+          🗑️ Reset Semua Tim
+        </button>
+      </div>
+
+      <div id="bagan-container">
+        <div class="empty-state">
+          <div class="empty-icon">🎯</div>
+          <p>Daftarkan minimal 2 tim<br/>untuk melihat bagan pertandingan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== TAB: SKOR ======================== -->
+    <section id="tab-skor" class="tab">
+      <div class="section-title">
+        <span class="tag">04</span>
+        <h2>Live Scoreboard</h2>
+      </div>
+
+      <!-- Match Selector -->
+      <div class="card match-selector-card">
+        <label>Pilih Pertandingan</label>
+        <select id="match-select">
+          <option value="">-- Pilih Match --</option>
+        </select>
+      </div>
+
+      <!-- Scoreboard -->
+      <div class="scoreboard-wrap">
+        <div class="score-panel" id="panel-a">
+          <div class="team-name" id="nama-tim-a">Tim A</div>
+          <div class="score-display" id="skor-a">0</div>
+          <div class="score-buttons">
+            <button class="score-btn add" id="btn-plus-a">+1</button>
+            <button class="score-btn sub" id="btn-minus-a">−1</button>
+          </div>
+        </div>
+
+        <div class="vs-block">
+          <div class="vs-label">VS</div>
+          <button class="btn-secondary" id="btn-reset-skor">Reset Skor</button>
+        </div>
+
+        <div class="score-panel" id="panel-b">
+          <div class="team-name" id="nama-tim-b">Tim B</div>
+          <div class="score-display" id="skor-b">0</div>
+          <div class="score-buttons">
+            <button class="score-btn add" id="btn-plus-b">+1</button>
+            <button class="score-btn sub" id="btn-minus-b">−1</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="section-title mt-lg">
+        <span class="tag">📋</span>
+        <h2>Riwayat Poin</h2>
+      </div>
+      <div id="score-history" class="history-list">
+        <p class="history-empty">Belum ada skor tercatat.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
